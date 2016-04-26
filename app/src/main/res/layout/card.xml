@@ -30,16 +30,23 @@
                 android:textSize="28sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/no_va"
-                android:layout_width="170dp"
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:gravity="end|center_vertical"
-                android:textColor="@color/colorPrimary"
-                android:text="No va"
-                android:textSize="28sp"
-                android:textStyle="bold" />
+                android:id="@+id/button2"
+                android:layout_gravity="center"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"/>
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/button"
+                android:layout_gravity="right|center_vertical"
+                android:layout_toLeftOf="@id/button2" />
         </RelativeLayout>
     </android.support.v7.widget.CardView>
+
 </FrameLayout>
