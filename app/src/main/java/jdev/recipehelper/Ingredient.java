@@ -6,6 +6,24 @@ import java.util.Date;
  * Created by dracc on 19/04/2016.
  */
 public class Ingredient {
+
+    // Creamos las variables que usara.
+    private String name;
+    private String family;
+    private String state;
+    private String metric;
+    private String lot;
+    private float quantity;
+    private float cost;
+    private Date expiration;
+
+    // Constructor basico con nombre y cantidad, solo de prueba el momento.
+    public Ingredient(String name, float quantity) {
+        this.name = name;
+        this.quantity = quantity;
+    }
+
+    // Get necesarios para acceder a las variables.
     public String getName() {
         return name;
     }
@@ -38,19 +56,6 @@ public class Ingredient {
         return expiration;
     }
 
-    public String name;
-    public String family;
-    public String state;
-    public String metric;
-    public String lot;
-    public float quantity;
-    public float cost;
-    public Date expiration;
-
-    public Ingredient(String name, float quantity) {
-        this.name = name;
-        this.quantity = quantity;
-    }
 
 
 }
