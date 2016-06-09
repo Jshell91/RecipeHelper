@@ -8,39 +8,41 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 /**
  * Created by dracc on 15/04/2016.
  */
-public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder>{
+public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeHolder>{
     // Adapter custom para las diferentes cartas que nos muestran las recetas.
 
     // Dataset a usar
-    private String[] dataset;
+    private ArrayList<Recipe> dataset;
 
     // Constructor que define el dataset
-    public RecipeAdapter(String[] data){
+    public RecipeAdapter(ArrayList<Recipe> data){
         dataset = data;
     }
 
-    // Creamos el ViewHolder con el layout seleccionado
+    // Creamos el IngredientHolder con el layout seleccionado
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card, parent, false);
-
-        return new ViewHolder(v);
+    public RecipeHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recipe_card, parent, false);
+        return new RecipeHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(RecipeHolder holder, final int position) {
 
         // Le damos a cada carta los datos que necesite
-        holder.setCardText(dataset[position]);
+        holder.setCardText(dataset.get(position).getName());
 
         // Al hacer click en el boton de la calculadora nos lanzara a la correspondiente activity
         holder.btncalc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), Calculator.class);
+                intent.putExtra("Nombre", dataset.get(position).getName());
                 v.getContext().startActivity(intent);
             }
         });
@@ -48,17 +50,17 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
 
     @Override
     public int getItemCount() {
-        return dataset.length;
+        return dataset.size();
     }
 
-    // ViewHolder personalizado con el que manejaremos los elementos necesarios del layout
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    // IngredientHolder personalizado con el que manejaremos los elementos necesarios del layout
+    public static class RecipeHolder extends RecyclerView.ViewHolder {
         // Componentes a los que accederemos.
         public TextView nombre;
         public Button btncalc;
 
         // Constructor para inicializar los distintos componentes
-        public ViewHolder(View v){
+        public RecipeHolder(View v){
             super(v);
             nombre = (TextView) v.findViewById(R.id.nombre);
             btncalc = (Button) v.findViewById(R.id.button2);

@@ -9,18 +9,19 @@ public class Ingredient {
 
     // Creamos las variables que usara.
     private String name;
-    private String family;
+    private String type;
     private String state;
     private String metric;
     private String lot;
     private float quantity;
-    private float cost;
+    private double cost;
     private Date expiration;
 
     // Constructor basico con nombre y cantidad, solo de prueba el momento.
-    public Ingredient(String name, float quantity) {
+    public Ingredient(String name, float quantity, double cost) {
         this.name = name;
         this.quantity = quantity;
+        this.cost = cost;
     }
 
     // Get necesarios para acceder a las variables.
@@ -28,8 +29,8 @@ public class Ingredient {
         return name;
     }
 
-    public String getFamily() {
-        return family;
+    public String getType() {
+        return type;
     }
 
     public String getState() {
@@ -48,7 +49,7 @@ public class Ingredient {
         return quantity;
     }
 
-    public float getCost() {
+    public double getCost() {
         return cost;
     }
 
@@ -56,6 +57,35 @@ public class Ingredient {
         return expiration;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
 
+    public void setType(String type) {
+        this.type = type;
+    }
 
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public void setMetric(String metric) {
+        this.metric = metric;
+    }
+
+    public void setLot(String lot) {
+        this.lot = lot;
+    }
+
+    public void setQuantity(float quantity) {
+        this.quantity = quantity;
+    }
+
+    public void setCost(double cost) {
+        this.cost = cost;
+    }
+
+    public void setExpiration(Date expiration) {
+        this.expiration = expiration;
+    }
 }

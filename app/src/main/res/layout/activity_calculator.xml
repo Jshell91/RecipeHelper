@@ -44,47 +44,51 @@
 
         <TextView
             android:layout_width="fill_parent"
-            android:layout_height="100dp"
+            android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="receta"
-            android:textSize="50dp"
-            android:id="@+id/tvingname"
+            android:text="Nombre"
+            android:id="@+id/tvrecname"
             android:layout_toRightOf="@id/ivphoto"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="cantidad"
+            android:text="Cantidad: "
             android:id="@+id/tvquantity"
-            android:layout_below="@+id/tvingname"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_below="@+id/tvrecname"
+            android:layout_alignLeft="@+id/tvrecname"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="tiempo"
+            android:text="Tiempo: "
             android:id="@+id/tvtime"
-            android:layout_below="@+id/tvquantity"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_below="@+id/tvcost"
+            android:layout_alignLeft="@+id/tvrecname"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="coste"
+            android:text="Coste: "
             android:id="@+id/tvcost"
-            android:layout_below="@+id/tvtime"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_below="@+id/tvquantity"
+            android:layout_alignLeft="@+id/tvrecname"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/tvnumcost"
+            android:layout_below="@+id/tvquantity"
+            android:layout_alignRight="@+id/tvrecname" />
 
         <android.support.v7.widget.RecyclerView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/ing_recycler"
-            android:layout_below="@+id/tvcost"
+            android:layout_below="@+id/tvtime"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 

@@ -18,7 +18,10 @@
         <activity
             android:name=".Calculator"
             android:label="@string/title_activity_calculator"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".NewRecipe" />
+        <activity android:name=".IngredientList" />
+        <activity android:name=".NewIngredient"></activity>
     </application>
 
 </manifest>

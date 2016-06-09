@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_new_ingredient"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="jdev.recipehelper.NewIngredient">
+
+    <TextView
+        android:text="Cantidad:"
+        android:layout_width="120dp"
+        android:layout_height="24dp"
+        android:id="@+id/tvningquantity"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_alignBaseline="@+id/etningquantity"
+        android:layout_alignBottom="@+id/etningquantity"
+        android:layout_toLeftOf="@+id/etningcost"
+        android:layout_toStartOf="@+id/etningcost" />
+
+    <TextView
+        android:text="Coste: "
+        android:layout_width="120dp"
+        android:layout_height="24dp"
+        android:id="@+id/tvningcost"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_alignBaseline="@+id/etningcost"
+        android:layout_alignBottom="@+id/etningcost"
+        android:layout_toLeftOf="@+id/etningtype"
+        android:layout_toStartOf="@+id/etningtype" />
+
+    <TextView
+        android:text="Tipo:"
+        android:layout_width="120dp"
+        android:layout_height="24dp"
+        android:id="@+id/tvningtype"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_alignBaseline="@+id/etningtype"
+        android:layout_alignBottom="@+id/etningtype"
+        android:layout_toLeftOf="@+id/etningname"
+        android:layout_toStartOf="@+id/etningname" />
+
+    <TextView
+        android:text="Nombre:"
+        android:layout_width="120dp"
+        android:layout_height="24dp"
+        android:id="@+id/tvningname"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_marginLeft="15dp"
+        android:layout_alignBaseline="@+id/etningname"
+        android:layout_alignBottom="@+id/etningname"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="15dp" />
+    <TextView
+        android:text="Lote:"
+        android:layout_width="120dp"
+        android:layout_height="24dp"
+        android:id="@+id/tvninglot"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_marginLeft="15dp"
+        android:layout_alignBaseline="@+id/etninglot"
+        android:layout_alignBottom="@+id/etninglot"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="15dp" />
+
+    <TextView
+        android:text="Caducidad:"
+        android:layout_width="120dp"
+        android:layout_height="24dp"
+        android:id="@+id/tvningdate"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_marginLeft="15dp"
+        android:layout_alignBaseline="@+id/etningdate"
+        android:layout_alignBottom="@+id/etningdate"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="15dp" />
+
+    <EditText
+        android:layout_width="232dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:layout_toRightOf="@+id/tvningname"
+        android:id="@+id/etningname"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp" />
+
+    <EditText
+        android:layout_width="232dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/etningtype"
+        android:layout_marginRight="16dp"
+        android:layout_below="@id/etningname"
+        android:layout_toRightOf="@id/tvningtype"/>
+
+    <EditText
+        android:layout_width="232dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/etningcost"
+        android:layout_marginRight="16dp"
+        android:layout_toRightOf="@id/tvningcost"
+        android:layout_below="@id/etningtype"/>
+
+    <EditText
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/etningquantity"
+        android:layout_toRightOf="@id/tvningquantity"
+        android:layout_below="@id/etningcost"/>
+
+    <Spinner
+        android:layout_width="52dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnermetric"
+        android:entries="@array/metricarray"
+        android:layout_toRightOf="@id/etningquantity"
+        android:layout_below="@id/etningcost"
+        android:layout_marginRight="16dp"
+        android:layout_alignBottom="@+id/etningquantity" />
+
+    <EditText
+    android:layout_width="232dp"
+    android:layout_height="wrap_content"
+    android:inputType="textPersonName"
+    android:ems="10"
+    android:layout_below="@+id/etningquantity"
+    android:layout_alignLeft="@+id/etningquantity"
+    android:layout_alignStart="@+id/etningquantity"
+    android:id="@+id/etninglot" />
+
+    <EditText
+        android:layout_width="232dp"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:ems="10"
+        android:layout_below="@+id/etninglot"
+        android:layout_alignLeft="@+id/etninglot"
+        android:layout_alignStart="@+id/etninglot"
+        android:id="@+id/etningdate" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etningdate"
+        android:layout_centerHorizontal="true">
+
+        <Button
+            android:text="Guardar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/button3"
+            android:id="@+id/btnsave"
+            android:layout_weight="1"
+            android:onClick="saveIngredient"/>
+
+        <Button
+            android:text="Limpiar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnclear"
+            android:layout_weight="1"
+            android:onClick="clearIng"/>
+    </LinearLayout>
+
+
+</RelativeLayout>

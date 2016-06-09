@@ -27,6 +27,10 @@ public class Recipe {
         this.ingredientList = ingredientList;
     }
 
+    public Recipe(String name) {
+        this.name = name;
+    }
+
     // Get necesarios para acceder a las variables.
     public String getName() {
         return name;

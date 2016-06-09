@@ -7,7 +7,7 @@
     android:weightSum="1">
 
     <android.support.v7.widget.CardView
-        android:id="@+id/cardview"
+        android:id="@+id/recipecard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -28,7 +28,8 @@
                 android:gravity="start|center_vertical"
                 android:textColor="@color/colorPrimary"
                 android:textSize="28sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:layout_centerVertical="true"/>
 
             <Button
                 style="?android:attr/buttonStyleSmall"
@@ -37,7 +38,8 @@
                 android:id="@+id/button2"
                 android:layout_gravity="center"
                 android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"/>
+                android:layout_alignParentRight="true"
+                android:text="Calc" />
 
             <Button
                 style="?android:attr/buttonStyleSmall"
@@ -45,7 +47,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/button"
                 android:layout_gravity="right|center_vertical"
-                android:layout_toLeftOf="@id/button2" />
+                android:layout_toLeftOf="@id/button2"
+                android:text="Edit" />
         </RelativeLayout>
     </android.support.v7.widget.CardView>
 

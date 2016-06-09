@@ -1,22 +1,34 @@
 package jdev.recipehelper;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.View;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.ArrayList;
+
+public class MainActivity extends BaseActivity {
 
     // Creamos el adaptador que usaremos.
     private RecyclerView.Adapter adapter;
 
     // Dataset de ejemplo para probar la funcionalidad.
-    private String[] dataset = {"Magdalena", "Bizcocho", "Galletas" };
+    private ArrayList<Recipe> dataset = new ArrayList<Recipe>();
+    Recipe rec1 = new Recipe("Magdalena");
+    Recipe rec2 = new Recipe("Bizcocho");
+    Recipe rec3 = new Recipe("Galleta");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        dataset.add(rec1);
+        dataset.add(rec2);
+        dataset.add(rec3);
 
         // Creamos el recyclerView
         RecyclerView recyclerview;
@@ -31,4 +43,11 @@ public class MainActivity extends AppCompatActivity {
         adapter = new RecipeAdapter(dataset);
         recyclerview.setAdapter(adapter);
     }
+
+    public void newRecipe(View v){
+        Intent intent = new Intent(this, NewRecipe.class);
+        this.startActivity(intent);
+    }
+
 }
+
