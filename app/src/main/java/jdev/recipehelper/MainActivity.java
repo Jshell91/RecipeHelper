@@ -2,10 +2,8 @@ package jdev.recipehelper;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.Menu;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -32,7 +30,7 @@ public class MainActivity extends BaseActivity {
 
         // Creamos el recyclerView
         RecyclerView recyclerview;
-        recyclerview = (RecyclerView) findViewById(R.id.recycler_view);
+        recyclerview = (RecyclerView) findViewById(R.id.recycleringredient);
 
         // Creamos el layoutmanager y lo asignamos al recyclerview
         RecyclerView.LayoutManager manager;

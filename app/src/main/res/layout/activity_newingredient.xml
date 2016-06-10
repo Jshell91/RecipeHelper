@@ -101,7 +101,7 @@
     <EditText
         android:layout_width="232dp"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
+        android:inputType="numberDecimal"
         android:ems="10"
         android:id="@+id/etningcost"
         android:layout_marginRight="16dp"
@@ -109,23 +109,13 @@
         android:layout_below="@id/etningtype"/>
 
     <EditText
-        android:layout_width="180dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
+        android:inputType="numberDecimal"
         android:ems="10"
         android:id="@+id/etningquantity"
         android:layout_toRightOf="@id/tvningquantity"
         android:layout_below="@id/etningcost"/>
-
-    <Spinner
-        android:layout_width="52dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/spinnermetric"
-        android:entries="@array/metricarray"
-        android:layout_toRightOf="@id/etningquantity"
-        android:layout_below="@id/etningcost"
-        android:layout_marginRight="16dp"
-        android:layout_alignBottom="@+id/etningquantity" />
 
     <EditText
     android:layout_width="232dp"
@@ -146,6 +136,16 @@
         android:layout_alignLeft="@+id/etninglot"
         android:layout_alignStart="@+id/etninglot"
         android:id="@+id/etningdate" />
+
+    <Spinner
+        android:layout_width="82dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnermetric"
+        android:entries="@array/metricarray"
+        android:layout_toRightOf="@id/etningquantity"
+        android:layout_below="@id/etningcost"
+        android:layout_marginRight="16dp"
+        android:layout_alignBottom="@+id/etningquantity" />
 
     <LinearLayout
         android:layout_width="wrap_content"
