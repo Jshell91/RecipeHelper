@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -18,6 +19,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.Reader;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
@@ -32,8 +34,6 @@ public class IngredientList extends BaseActivity {
 
         recycler = (RecyclerView) findViewById(R.id.recycleringredient);
 
-        JsonObject jsonObject = null;
-
         File file = new File(this.getFilesDir().getPath() + "/ingredientList.json");
 
         try {
@@ -41,15 +41,18 @@ public class IngredientList extends BaseActivity {
                 file.createNewFile();
             }
             FileReader freader = new FileReader(this.getFilesDir().getPath() + "/ingredientList.json");
+            JsonReader jreader = new JsonReader(freader);
+            jreader.setLenient(true);
             JsonParser parser = new JsonParser();
-            JsonElement jelement = parser.parse(freader);
-            jsonObject = jelement.getAsJsonObject();
-            Log.d("TAG", "onCreate: " + jsonObject.toString());
 
-            Ingredient ing = new Ingredient(jsonObject.get("name").getAsString(), jsonObject.get("quantity").getAsFloat(), jsonObject.get("cost").getAsDouble());
-            Ingredient ing2 = new Ingredient("chafa", (float) 0.5, 0.25);
-            ingredientlist.add(ing);
-            ingredientlist.add(ing2);
+            JsonArray jarray = parser.parse(jreader).getAsJsonObject().getAsJsonArray("ingredientListajo");
+            freader.close();
+            Log.d("TAG", "onCreate: " + jarray.toString());
+            for (JsonElement e : jarray) {
+                JsonObject jobject = e.getAsJsonObject();
+                Ingredient ing = new Ingredient(jobject.get("name").getAsString(), jobject.get("quantity").getAsFloat(), jobject.get("cost").getAsDouble());
+                ingredientlist.add(ing);
+            }
         } catch (Exception e) {
             e.printStackTrace();
             Log.e("TAG", "onCreate: " + e );
@@ -68,6 +71,7 @@ public class IngredientList extends BaseActivity {
 
     public void newIngredient(View v){
         Intent intent = new Intent(this, NewIngredient.class);
+
         this.startActivity(intent);
     }
 }
