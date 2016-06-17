@@ -6,10 +6,100 @@
     android:layout_height="match_parent"
     tools:context="jdev.recipehelper.NewRecipe">
 
+    <ImageView
+        android:src="@drawable/cupcakelogo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="16dp"
+        android:id="@+id/ivrecphoto" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/ivrecphoto"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="Nombre"
+        android:id="@+id/etnewrecname"
+        android:layout_marginRight="16dp" />
+
+    <EditText
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/ivrecphoto"
+        android:id="@+id/etnewrecquantity"
+        android:text="Cantidad"
+        android:layout_below="@id/etnewrecname"/>
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/etnewrecquantity"
+        android:id="@+id/spinnerrecmetric"
+        android:layout_marginRight="16dp"
+        android:layout_alignParentRight="true"
+        android:entries="@array/metricarray"
+        android:layout_below="@id/etnewrecname"
+        android:layout_above="@+id/etnewrecprice" />
+
+    <EditText
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/etnewreccost"
+        android:layout_marginRight="16dp"
+        android:text="Coste"
+        android:inputType="numberDecimal"
+        android:layout_toRightOf="@id/etnewrecprice"
+        android:layout_below="@id/etnewrecquantity"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tiempo:"
+        android:id="@+id/tvnewrectime"
+        android:layout_below="@id/etnewrecprice"
+        android:layout_marginLeft="16dp"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+        android:layout_alignBottom="@+id/etnewrectime"
+        android:textAlignment="center"/>
+
+    <EditText
+        android:layout_marginRight="16dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="time"
+        android:layout_below="@id/etnewrecprice"
+        android:layout_toRightOf="@id/tvnewrectime"
+        android:id="@+id/etnewrectime" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Añadir Ingrediente"
+        android:id="@+id/btnnewrecing"
+        android:onClick="addIngredient"
+        android:layout_below="@id/tvnewrectime"
+        android:layout_centerHorizontal="true"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclernewrecipe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/btnnewrecing"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:scrollbars="vertical">
+    </android.support.v7.widget.RecyclerView>
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/recyclernewrecipe">
 
         <Button
             android:text="Guardar"
@@ -28,5 +118,16 @@
             android:layout_weight="1"
             android:onClick="clear"/>
     </LinearLayout>
+
+    <EditText
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/etnewrecprice"
+        android:text="Precio"
+        android:inputType="numberDecimal"
+        android:layout_below="@+id/etnewrecquantity"
+        android:layout_toRightOf="@+id/ivrecphoto"
+        android:layout_toEndOf="@+id/ivrecphoto" />
+
 
 </RelativeLayout>

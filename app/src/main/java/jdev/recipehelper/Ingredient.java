@@ -15,13 +15,31 @@ public class Ingredient {
     private String lot;
     private float quantity;
     private double cost;
-    private Date expiration;
+    private String expiration;
 
     // Constructor basico con nombre y cantidad, solo de prueba el momento.
     public Ingredient(String name, float quantity, double cost) {
         this.name = name;
         this.quantity = quantity;
         this.cost = cost;
+    }
+
+    public Ingredient(String name, float quantity, double cost, String metric) {
+        this.name = name;
+        this.quantity = quantity;
+        this.cost = cost;
+        this.metric = metric;
+    }
+
+    public Ingredient(String name, String type, String state, String metric, String lot, float quantity, double cost, String expiration) {
+        this.name = name;
+        this.type = type;
+        this.state = state;
+        this.metric = metric;
+        this.lot = lot;
+        this.quantity = quantity;
+        this.cost = cost;
+        this.expiration = expiration;
     }
 
     // Get necesarios para acceder a las variables.
@@ -53,7 +71,7 @@ public class Ingredient {
         return cost;
     }
 
-    public Date getExpiration() {
+    public String getExpiration() {
         return expiration;
     }
 
@@ -85,7 +103,7 @@ public class Ingredient {
         this.cost = cost;
     }
 
-    public void setExpiration(Date expiration) {
+    public void setExpiration(String expiration) {
         this.expiration = expiration;
     }
 }

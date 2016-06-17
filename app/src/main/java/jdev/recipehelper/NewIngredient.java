@@ -24,7 +24,7 @@ import java.io.InputStreamReader;
 
 public class NewIngredient extends BaseActivity {
 
-    Spinner spmetric;
+    Spinner spmetric, spstate;
     EditText etningname, etningtype, etningcost, etningquantity, etninglot, etningdate;
 
     @Override
@@ -39,10 +39,18 @@ public class NewIngredient extends BaseActivity {
         etninglot = (EditText) findViewById(R.id.etninglot);
         etningdate = (EditText) findViewById(R.id.etningdate);
         spmetric = (Spinner) findViewById(R.id.spinnermetric);
+        spstate = (Spinner) findViewById(R.id.spinnerstate);
     }
 
     public void clearIng(View v){
-
+        etningname.setText(null);
+        etningtype.setText(null);
+        etningcost.setText(null);
+        etningquantity.setText(null);
+        etninglot.setText(null);
+        etningdate.setText(null);
+        spmetric.setSelection(0);
+        spstate.setSelection(0);
     }
 
     public void saveIngredient(View v){
@@ -54,9 +62,8 @@ public class NewIngredient extends BaseActivity {
         ingredient.addProperty("metric", spmetric.getSelectedItem().toString());
         ingredient.addProperty("lot", etninglot.getText().toString());
         ingredient.addProperty("date", etningdate.getText().toString());
+        ingredient.addProperty("state", spstate.getSelectedItem().toString());
         Log.d("TAG", "saveIngredient: " + ingredient.toString());
-
-
 
         try {
 
@@ -66,7 +73,7 @@ public class NewIngredient extends BaseActivity {
             JsonParser parser = new JsonParser();
             JsonElement jelement = parser.parse(jreader);
             freader.close();
-            jelement.getAsJsonObject().getAsJsonArray("ingredientListajo").add(ingredient);
+            jelement.getAsJsonObject().getAsJsonArray("ingredientList").add(ingredient);
 
             FileOutputStream output = openFileOutput("ingredientList.json", Context.MODE_PRIVATE);
             output.write(jelement.toString().getBytes());
@@ -76,5 +83,6 @@ public class NewIngredient extends BaseActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        clearIng(v);
     }
 }

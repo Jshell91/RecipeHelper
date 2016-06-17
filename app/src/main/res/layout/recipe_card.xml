@@ -20,35 +20,37 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent">
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btncalc"
+                android:layout_gravity="center"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:text="Calc"                />
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnedit"
+                android:layout_gravity="right|center_vertical"
+                android:layout_toLeftOf="@id/btncalc"
+                android:text="Edit" />
+
             <TextView
-                android:id="@+id/nombre"
+                android:id="@+id/tvreccardname"
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
                 android:gravity="start|center_vertical"
                 android:textColor="@color/colorPrimary"
                 android:textSize="28sp"
                 android:textStyle="bold"
-                android:layout_centerVertical="true"/>
-
-            <Button
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/button2"
-                android:layout_gravity="center"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:text="Calc" />
-
-            <Button
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/button"
-                android:layout_gravity="right|center_vertical"
-                android:layout_toLeftOf="@id/button2"
-                android:text="Edit" />
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
         </RelativeLayout>
     </android.support.v7.widget.CardView>
 

@@ -30,7 +30,7 @@ public class MainActivity extends BaseActivity {
 
         // Creamos el recyclerView
         RecyclerView recyclerview;
-        recyclerview = (RecyclerView) findViewById(R.id.recycleringredient);
+        recyclerview = (RecyclerView) findViewById(R.id.recyclerrecipe);
 
         // Creamos el layoutmanager y lo asignamos al recyclerview
         RecyclerView.LayoutManager manager;

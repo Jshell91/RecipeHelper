@@ -62,8 +62,8 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeHold
         // Constructor para inicializar los distintos componentes
         public RecipeHolder(View v){
             super(v);
-            nombre = (TextView) v.findViewById(R.id.nombre);
-            btncalc = (Button) v.findViewById(R.id.button2);
+            nombre = (TextView) v.findViewById(R.id.tvreccardname);
+            btncalc = (Button) v.findViewById(R.id.btncalc);
         }
 
         // Set para modificar todos los campos de la carta a la vez
@@ -71,6 +71,4 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeHold
             nombre.setText(name);
         }
     }
-
-
 }

@@ -77,6 +77,18 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginStart="15dp" />
+    <TextView
+        android:text="Estado:"
+        android:layout_width="120dp"
+        android:layout_height="24dp"
+        android:id="@+id/tvningstate"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_marginLeft="15dp"
+        android:layout_alignBaseline="@+id/spinnerstate"
+        android:layout_alignBottom="@+id/spinnerstate"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="15dp" />
 
     <EditText
         android:layout_width="232dp"
@@ -118,14 +130,14 @@
         android:layout_below="@id/etningcost"/>
 
     <EditText
-    android:layout_width="232dp"
-    android:layout_height="wrap_content"
-    android:inputType="textPersonName"
-    android:ems="10"
-    android:layout_below="@+id/etningquantity"
-    android:layout_alignLeft="@+id/etningquantity"
-    android:layout_alignStart="@+id/etningquantity"
-    android:id="@+id/etninglot" />
+        android:layout_width="232dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:layout_below="@+id/etningquantity"
+        android:layout_alignLeft="@+id/etningquantity"
+        android:layout_alignStart="@+id/etningquantity"
+        android:id="@+id/etninglot" />
 
     <EditText
         android:layout_width="232dp"
@@ -147,10 +159,21 @@
         android:layout_marginRight="16dp"
         android:layout_alignBottom="@+id/etningquantity" />
 
+    <Spinner
+        android:layout_width="232dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerstate"
+        android:entries="@array/statearray"
+        android:layout_toRightOf="@id/tvningstate"
+        android:layout_below="@id/etningdate"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="12dp"/>
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/etningdate"
+        android:layout_below="@id/tvningstate"
+        android:layout_marginTop="16dp"
         android:layout_centerHorizontal="true">
 
         <Button
@@ -170,6 +193,4 @@
             android:layout_weight="1"
             android:onClick="clearIng"/>
     </LinearLayout>
-
-
 </RelativeLayout>

@@ -15,21 +15,57 @@
         android:layout_marginRight="4dp"
         card_view:cardElevation="10dp"
         card_view:cardPreventCornerOverlap="true"
-        card_view:contentPadding="5dp">
+        card_view:contentPadding="4dp">
 
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Medium Text"
-                android:id="@+id/tvrecname"
-                android:layout_centerVertical="true"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:text="Nombre"
+                android:id="@+id/tvinglistname"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvinglistquantext"
+                android:layout_below="@id/tvinglistname"
+                android:text="Cantidad: "/>
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/tvinglistquantext"
+                android:layout_below="@id/tvinglistname"
+                android:maxLines="1"
+                android:id="@+id/tvinglistquantity"/>
+            <TextView
+                android:layout_width="24dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvinglistmetric"
+                android:layout_toRightOf="@id/tvinglistquantity"
+                android:layout_below="@id/tvinglistname"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvinglistcostext"
+                android:text="Coste: "
+                android:layout_below="@id/tvinglistname"
+                android:layout_centerHorizontal="true"
+                android:layout_toRightOf="@id/tvinglistmetric"/>
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvinglistcost"
+                android:layout_below="@id/tvinglistname"
+                android:maxLines="1"
+                android:layout_toRightOf="@id/tvinglistcostext"/>
+
         </RelativeLayout>
     </android.support.v7.widget.CardView>
 </FrameLayout>
