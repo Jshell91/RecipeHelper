@@ -33,26 +33,11 @@ public class IngredientList extends BaseActivity {
 
         try {
             if(!file.exists()){
-                file.createNewFile();
-                JsonObject jsonObject = new JsonObject();
-                jsonObject.add("ingredientList", new JsonArray());
-                FileWriter fwriter = new FileWriter(file,false);
-                fwriter.write(jsonObject.toString());
-                fwriter.close();
+                IngredientJson.createJsonFile(file);
             }
-            FileReader freader = new FileReader(this.getFilesDir().getPath() + "/ingredientList.json");
-            JsonReader jreader = new JsonReader(freader);
-            jreader.setLenient(true);
-            JsonParser parser = new JsonParser();
+            JsonObject jobj = IngredientJson.readJson(this);
+            ingredientlist = IngredientJson.toArrayList(jobj.getAsJsonArray("ingredientList"));
 
-            JsonArray jarray = parser.parse(jreader).getAsJsonObject().getAsJsonArray("ingredientList");
-            freader.close();
-            Log.d("TAG", "onCreate: " + jarray.toString());
-            for (JsonElement e : jarray) {
-                JsonObject jobject = e.getAsJsonObject();
-                Ingredient ing = new Ingredient(jobject.get("name").getAsString(), jobject.get("quantity").getAsFloat(), jobject.get("cost").getAsDouble(), jobject.get("metric").getAsString());
-                ingredientlist.add(ing);
-            }
         } catch (Exception e) {
             e.printStackTrace();
             Log.e("TAG", "onCreate: " + e );
@@ -65,13 +50,13 @@ public class IngredientList extends BaseActivity {
         recycler.setLayoutManager(manager);
 
 
-        RecyclerView.Adapter adapter = new IngredientListAdapter(ingredientlist);
+        RecyclerView.Adapter adapter = new IngredientListAdapter(ingredientlist, this);
         recycler.setAdapter(adapter);
     }
 
     public void newIngredient(View v){
         Intent intent = new Intent(this, NewIngredient.class);
-
+        intent.putParcelableArrayListExtra("IngredientList", ingredientlist);
         this.startActivity(intent);
     }
 }

@@ -6,6 +6,7 @@
         android:id="@+id/home"
         android:orderInCategory="500"
         android:title="@string/home"
+        android:icon="@drawable/ic_home_black_24dp"
         app:showAsAction="always" />
     <item
         android:id="@+id/ingredient"

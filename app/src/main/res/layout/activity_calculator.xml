@@ -56,8 +56,15 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Cantidad: "
             android:id="@+id/tvquantity"
-            android:layout_below="@+id/tvrecname"
-            android:layout_alignLeft="@+id/tvrecname"/>
+            android:layout_below="@id/tvrecname"
+            android:layout_alignLeft="@id/tvrecname"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/tvnumquantity"
+            android:layout_below="@id/tvrecname"
+            android:layout_alignRight="@id/tvrecname"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -67,6 +74,13 @@
             android:id="@+id/tvtime"
             android:layout_below="@+id/tvcost"
             android:layout_alignLeft="@+id/tvrecname"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvnumtime"
+            android:layout_below="@+id/tvcost"
+            android:layout_alignRight="@+id/tvrecname"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

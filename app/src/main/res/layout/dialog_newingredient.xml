@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvdnewtitle"
+        android:text="Crear nuevo Ingrediente: "
+        android:textStyle="bold"
+        android:textSize="28dp"
+        android:background="@color/colorPrimary"
+        android:textColor="#FFFFFF"
+        android:selectAllOnFocus="true"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nombre"
+        android:id="@+id/etdnewname"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/etdnewquantity"
+            android:inputType="number"
+            android:selectAllOnFocus="true"
+            android:text="Cantidad"/>
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:entries="@array/metricarray"
+            android:id="@+id/spinnerdnewmetric"
+            />
+    </LinearLayout>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Coste"
+        android:inputType="numberDecimal"
+        android:selectAllOnFocus="true"
+        android:id="@+id/etdnewcost"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btndnewok"
+            android:text="Aceptar"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancelar"
+            android:id="@+id/btndnewcancel"/>
+    </LinearLayout>
+
+</LinearLayout>

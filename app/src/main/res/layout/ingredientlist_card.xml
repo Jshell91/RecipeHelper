@@ -24,7 +24,9 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"
+                android:textSize="24dp"
                 android:text="Nombre"
                 android:id="@+id/tvinglistname"
                 android:layout_alignParentLeft="true"

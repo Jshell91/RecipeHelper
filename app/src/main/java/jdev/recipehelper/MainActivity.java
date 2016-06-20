@@ -4,8 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
+import com.google.gson.JsonObject;
+
+import java.io.File;
 import java.util.ArrayList;
 
 public class MainActivity extends BaseActivity {
@@ -15,18 +19,25 @@ public class MainActivity extends BaseActivity {
 
     // Dataset de ejemplo para probar la funcionalidad.
     private ArrayList<Recipe> dataset = new ArrayList<Recipe>();
-    Recipe rec1 = new Recipe("Magdalena");
-    Recipe rec2 = new Recipe("Bizcocho");
-    Recipe rec3 = new Recipe("Galleta");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        dataset.add(rec1);
-        dataset.add(rec2);
-        dataset.add(rec3);
+        File file = new File(this.getFilesDir().getPath() + "/recipeList.json");
+
+        try {
+            if(!file.exists()){
+                RecipeJson.createJsonFile(file);
+            }
+            JsonObject jobj = RecipeJson.readJson(this);
+            dataset = RecipeJson.toArrayList(jobj.getAsJsonArray("recipeList"));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.e("TAG", "onCreate: " + e );
+        }
 
         // Creamos el recyclerView
         RecyclerView recyclerview;
@@ -44,6 +55,7 @@ public class MainActivity extends BaseActivity {
 
     public void newRecipe(View v){
         Intent intent = new Intent(this, NewRecipe.class);
+        intent.putParcelableArrayListExtra("RecipeList", dataset);
         this.startActivity(intent);
     }
 

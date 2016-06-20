@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Spinner;
 
 /**
  * Created by Jshell on 31/05/2016.
@@ -38,5 +39,16 @@ public class BaseActivity extends AppCompatActivity {
         }
 
         return false;
+    }
+
+    protected int getIndex(Spinner spinner, String value){
+        int index = 0;
+        for (int i = 0; i<spinner.getCount(); i++){
+            if(spinner.getItemAtPosition(i).toString().equalsIgnoreCase(value)){
+                index = i;
+                break;
+            }
+        }
+        return index;
     }
 }

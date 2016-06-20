@@ -1,6 +1,7 @@
 package jdev.recipehelper;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -8,13 +9,17 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
 /**
  * Created by Jshell on 16/06/2016.
  */
+
 
 public class IngredientJson {
 
@@ -31,10 +36,14 @@ public class IngredientJson {
 
     public static Ingredient toIngredient(JsonObject jobject){
 
-        return new Ingredient(jobject.get("name").getAsString(), jobject.get("type").getAsString(),
-                jobject.get("state").getAsString(), jobject.get("metric").getAsString(),
-                jobject.get("lot").getAsString(), jobject.get("quantity").getAsFloat(),
-                jobject.get("cost").getAsDouble(), jobject.get("date").getAsString());
+        return new Ingredient(jobject.get("name").getAsString(),
+                jobject.get("type").getAsString(),
+                jobject.get("state").getAsString(),
+                jobject.get("metric").getAsString(),
+                jobject.get("lot").getAsString(),
+                jobject.get("quantity").getAsFloat(),
+                jobject.get("cost").getAsDouble(),
+                jobject.get("date").getAsString());
     }
 
     public static ArrayList<Ingredient> toArrayList(JsonArray jarray){
@@ -54,9 +63,8 @@ public class IngredientJson {
         ingredient.addProperty("quantity", e.getQuantity());
         ingredient.addProperty("metric", e.getMetric());
         ingredient.addProperty("lot", e.getLot());
-        ingredient.addProperty("expiration", e.getExpiration());
+        ingredient.addProperty("date", e.getExpiration());
         ingredient.addProperty("state", e.getState());
-
         return ingredient;
     }
 
@@ -68,5 +76,30 @@ public class IngredientJson {
         return jarray;
     }
 
+    public static void createJsonFile(File file) throws IOException {
+        file.createNewFile();
+        FileWriter fwriter = new FileWriter(file,false);
+        fwriter.write(createJsonObject().toString());
+        fwriter.close();
+    }
+    public static void writeJson(ArrayList<Ingredient> ilist, Context c){
+        try {
+            File file = new File(c.getFilesDir().getPath() + "/ingredientList.json");
+            JsonObject jobject = IngredientJson.createJsonObject();
+            jobject.getAsJsonArray("ingredientList").addAll(IngredientJson.toJsonArray(ilist));
 
+            FileWriter fwriter = new FileWriter(file, false);
+            fwriter.write(jobject.toString());
+            fwriter.close();
+            Log.d("TAG", "saveIngredient: " + "hecho");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static JsonObject createJsonObject(){
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.add("ingredientList", new JsonArray());
+        return jsonObject;
+    }
 }

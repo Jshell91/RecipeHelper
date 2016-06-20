@@ -1,6 +1,11 @@
 package jdev.recipehelper;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,7 +37,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeHold
     }
 
     @Override
-    public void onBindViewHolder(RecipeHolder holder, final int position) {
+    public void onBindViewHolder(final RecipeHolder holder, final int position) {
 
         // Le damos a cada carta los datos que necesite
         holder.setCardText(dataset.get(position).getName());
@@ -42,10 +47,49 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeHold
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), Calculator.class);
-                intent.putExtra("Nombre", dataset.get(position).getName());
+                intent.putExtra("Recipe", dataset.get(position));
                 v.getContext().startActivity(intent);
             }
         });
+
+        holder.card.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                AlertDialog dialog = createDialog(holder.getAdapterPosition(), holder.card.getContext());
+                dialog.show();
+                return false;
+            }
+        });
+        holder.btnedit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(holder.card.getContext(), NewRecipe.class);
+                intent.putParcelableArrayListExtra("RecipeList", dataset);
+                intent.putExtra("Recipe", dataset.get(holder.getAdapterPosition()));
+                holder.card.getContext().startActivity(intent);
+            }
+        });
+    }
+
+    public AlertDialog createDialog(final int position, final Context c){
+        AlertDialog.Builder builder = new AlertDialog.Builder(c);
+        builder.setTitle("Borrar Receta")
+                .setMessage("¿Quiere eliminar " + dataset.get(position).getName() + "?")
+                .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dataset.remove(position);
+                        RecipeJson.writeJson(dataset, c);
+
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+        return builder.create();
     }
 
     @Override
@@ -58,12 +102,16 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeHold
         // Componentes a los que accederemos.
         public TextView nombre;
         public Button btncalc;
+        public Button btnedit;
+        public CardView card;
 
         // Constructor para inicializar los distintos componentes
         public RecipeHolder(View v){
             super(v);
             nombre = (TextView) v.findViewById(R.id.tvreccardname);
             btncalc = (Button) v.findViewById(R.id.btncalc);
+            btnedit = (Button) v.findViewById(R.id.btnedit);
+            card = (CardView) v.findViewById(R.id.recipecard);
         }
 
         // Set para modificar todos los campos de la carta a la vez

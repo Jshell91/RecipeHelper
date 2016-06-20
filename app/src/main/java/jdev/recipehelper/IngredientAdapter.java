@@ -1,5 +1,6 @@
 package jdev.recipehelper;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -17,9 +18,7 @@ import java.util.ArrayList;
  */
 public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.IngredientHolder>{
     // Adapter personalizado que usaremos para mostrar los ingredientes en la calculadora, por el momento no funciona.
-
-    // Instanciamos la activity para poder acceder a sus metodos.
-    private Calculator calc;
+   Context context;
     // Dataset que usara.
     private ArrayList<Ingredient> data;
 
@@ -30,8 +29,8 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.In
     }
 
     // Constructor con dataset y activity
-    public IngredientAdapter(Calculator calc, ArrayList<Ingredient> data) {
-        this.calc = calc;
+    public IngredientAdapter(Context context, ArrayList<Ingredient> data) {
+        this.context = context;
         this.data = data;
     }
 
@@ -46,28 +45,24 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.In
     public void onBindViewHolder(final IngredientHolder holder, final int position) {
         Ingredient item = data.get(position);
         holder.setIngText(item);
-        holder.quantity.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
+        if(context instanceof Calculator){
+            holder.quantity.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-            }
-        });
-        holder.quantity.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                }
 
-            }
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                }
 
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                setQuantities(position, data, holder);
-            }
-        });
+                @Override
+                public void afterTextChanged(Editable s) {
+                    setQuantities(position, data, holder);
+                }
+            });
+        }
     }
 
 
@@ -104,8 +99,13 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.In
             }
         }
         Log.d("TAG","mult: " + mult +" Siguiente");
-
-        calc.setCostText(data);
+        if(context instanceof Calculator){
+            Calculator calc = (Calculator) context;
+            calc.setData(data);
+            calc.getRecipe().setCost();
+            calc.setTextCost();
+            Log.d("TOG", "setQuantities: " +calc.getTvnumcost().getText().toString() + " arf " + calc.getRecipe().getCost());
+        }
     }
 
     // IngredientHolder personalizado con el que manejaremos los elementos necesarios del layout
@@ -113,18 +113,21 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.In
         // Componentes a los que accederemos.
         TextView name;
         EditText quantity;
+        TextView metric;
 
         // Constructor para inicializar los distintos componentes
         public IngredientHolder(View v) {
             super(v);
             name = (TextView) v.findViewById(R.id.tvrecname);
             quantity = (EditText) v.findViewById(R.id.etingquantity);
+            metric = (TextView) v.findViewById(R.id.tvingmetric);
         }
 
         // Set para modificar todos los campos de la carta a la vez
         public void setIngText(Ingredient item){
             name.setText(item.getName());
             quantity.setText(Float.toString(item.getQuantity()));
+            metric.setText(item.getMetric());
         }
 
         public void setQuantityText(Ingredient e) {

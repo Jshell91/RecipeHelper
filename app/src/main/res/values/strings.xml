@@ -10,6 +10,7 @@
         <item>g</item>
         <item>L</item>
         <item>ml</item>
+        <item>u</item>
     </string-array>
     <string-array name="statearray">
         <item>Cerrado</item>

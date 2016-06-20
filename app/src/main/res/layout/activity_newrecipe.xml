@@ -20,6 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/ivrecphoto"
         android:layout_marginTop="16dp"
+        android:selectAllOnFocus="true"
         android:layout_marginEnd="16dp"
         android:text="Nombre"
         android:id="@+id/etnewrecname"
@@ -30,6 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/ivrecphoto"
         android:id="@+id/etnewrecquantity"
+        android:selectAllOnFocus="true"
         android:text="Cantidad"
         android:layout_below="@id/etnewrecname"/>
 
@@ -44,15 +46,20 @@
         android:layout_below="@id/etnewrecname"
         android:layout_above="@+id/etnewrecprice" />
 
-    <EditText
+    <TextView
         android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:id="@+id/etnewreccost"
         android:layout_marginRight="16dp"
         android:text="Coste"
         android:inputType="numberDecimal"
+        android:selectAllOnFocus="true"
         android:layout_toRightOf="@id/etnewrecprice"
-        android:layout_below="@id/etnewrecquantity"/>
+        android:layout_below="@id/etnewrecquantity"
+        android:layout_alignBottom="@id/etnewrecprice"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+        android:gravity="center"
+        />
 
     <TextView
         android:layout_width="wrap_content"
@@ -63,12 +70,13 @@
         android:layout_marginLeft="16dp"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
         android:layout_alignBottom="@+id/etnewrectime"
-        android:textAlignment="center"/>
+        android:gravity="center"/>
 
     <EditText
         android:layout_marginRight="16dp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:selectAllOnFocus="true"
         android:inputType="time"
         android:layout_below="@id/etnewrecprice"
         android:layout_toRightOf="@id/tvnewrectime"
@@ -90,8 +98,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@id/btnnewrecing"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
         android:scrollbars="vertical">
     </android.support.v7.widget.RecyclerView>
 
@@ -119,12 +125,14 @@
             android:onClick="clear"/>
     </LinearLayout>
 
-    <EditText
+    <TextView
         android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:id="@+id/etnewrecprice"
-        android:text="Precio"
+        android:text="Coste:"
         android:inputType="numberDecimal"
+        android:selectAllOnFocus="true"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
         android:layout_below="@+id/etnewrecquantity"
         android:layout_toRightOf="@+id/ivrecphoto"
         android:layout_toEndOf="@+id/ivrecphoto" />

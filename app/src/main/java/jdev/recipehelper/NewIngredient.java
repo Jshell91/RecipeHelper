@@ -1,6 +1,9 @@
 package jdev.recipehelper;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,17 +18,22 @@ import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 public class NewIngredient extends BaseActivity {
 
     Spinner spmetric, spstate;
     EditText etningname, etningtype, etningcost, etningquantity, etninglot, etningdate;
+    ArrayList<Ingredient> ingredientlist;
+    Ingredient baseIngredient;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +48,15 @@ public class NewIngredient extends BaseActivity {
         etningdate = (EditText) findViewById(R.id.etningdate);
         spmetric = (Spinner) findViewById(R.id.spinnermetric);
         spstate = (Spinner) findViewById(R.id.spinnerstate);
+
+        ingredientlist = new ArrayList<>();
+
+        Bundle bundle = getIntent().getExtras();
+        if(bundle != null){
+            ingredientlist = bundle.getParcelableArrayList("IngredientList");
+            baseIngredient = bundle.getParcelable("Ingredient");
+            if(baseIngredient != null){setInitialValues(baseIngredient);}
+        }
     }
 
     public void clearIng(View v){
@@ -53,36 +70,55 @@ public class NewIngredient extends BaseActivity {
         spstate.setSelection(0);
     }
 
-    public void saveIngredient(View v){
-        JsonObject ingredient = new JsonObject();
-        ingredient.addProperty("name", etningname.getText().toString());
-        ingredient.addProperty("type", etningtype.getText().toString());
-        ingredient.addProperty("cost", etningcost.getText().toString());
-        ingredient.addProperty("quantity", etningquantity.getText().toString());
-        ingredient.addProperty("metric", spmetric.getSelectedItem().toString());
-        ingredient.addProperty("lot", etninglot.getText().toString());
-        ingredient.addProperty("date", etningdate.getText().toString());
-        ingredient.addProperty("state", spstate.getSelectedItem().toString());
+    public void saveIngredient(View v){        
+        final Ingredient ingredient = new Ingredient(etningname.getText().toString(), etningtype.getText().toString(),
+                spstate.getSelectedItem().toString(), spmetric.getSelectedItem().toString(),
+                etninglot.getText().toString(), Float.parseFloat(etningquantity.getText().toString()),
+                Double.parseDouble(etningcost.getText().toString()), etningdate.getText().toString());
         Log.d("TAG", "saveIngredient: " + ingredient.toString());
-
-        try {
-
-            FileReader freader = new FileReader(this.getFilesDir().getPath() + "/ingredientList.json");
-            JsonReader jreader = new JsonReader(freader);
-            jreader.setLenient(true);
-            JsonParser parser = new JsonParser();
-            JsonElement jelement = parser.parse(jreader);
-            freader.close();
-            jelement.getAsJsonObject().getAsJsonArray("ingredientList").add(ingredient);
-
-            FileOutputStream output = openFileOutput("ingredientList.json", Context.MODE_PRIVATE);
-            output.write(jelement.toString().getBytes());
-            output.close();
-            Log.d("TAG", "saveIngredient: " + "hecho");
-
-        } catch (IOException e) {
-            e.printStackTrace();
+        if(!(ingredientlist.contains(ingredient))) {
+            ingredientlist.add(ingredient);
+            IngredientJson.writeJson(ingredientlist, this);
+        }else{
+            AlertDialog dialog = createDialog(ingredient, this);
+            dialog.show();
         }
         clearIng(v);
+    }
+
+    public void setInitialValues(Ingredient e){
+        etningname.setText(e.getName());
+        etningtype.setText(e.getType());
+        etningcost.setText("" + e.getCost());
+        etningquantity.setText("" + e.getQuantity());
+        etninglot.setText(e.getLot());
+        etningdate.setText(e.getExpiration());
+        spmetric.setSelection(getIndex(spmetric,e.getMetric()));
+        spstate.setSelection(getIndex(spstate, e.getState()));
+    }
+
+    public AlertDialog createDialog(final Ingredient ingredient, final Context c){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("El registro ya existe")
+                .setMessage("¿Quiere modificar " + baseIngredient.getName() + "?")
+                .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        for (Ingredient e : ingredientlist) {
+                            if(e.getName().equals(baseIngredient.getName())){
+                                ingredientlist.set(ingredientlist.indexOf(e), ingredient);
+                                IngredientJson.writeJson(ingredientlist, c);
+                                break;
+                            }
+                        }
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        IngredientJson.writeJson(ingredientlist, c);
+                    }
+                });
+        return builder.create();
     }
 }
