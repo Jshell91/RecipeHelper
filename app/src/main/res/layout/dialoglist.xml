@@ -32,6 +32,7 @@
             android:id="@+id/btndnewing"
             android:text="Nuevo"
             android:onClick="newIngredient"/>
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -196,9 +196,9 @@ public class Recipe implements Parcelable{
 
     public String timetoString(int f){
         String s;
-        int f2 = f%60;
+        int f2 = (f%3600)/60;
         int f3 = f2%60;
-        s = f/60 + ":" + f2 + ":" + f3;
+        s = f/3600 + ":" + f2 + ":" + f3;
         Log.d("TAG",f + " timetoString: " + time);
         return s;
     }

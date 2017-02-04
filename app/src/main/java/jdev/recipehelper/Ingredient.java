@@ -3,8 +3,6 @@ package jdev.recipehelper;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.Date;
-
 /**
  * Created by dracc on 19/04/2016.
  */

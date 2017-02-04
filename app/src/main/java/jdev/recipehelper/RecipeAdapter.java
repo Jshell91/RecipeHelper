@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -20,6 +19,8 @@ import java.util.ArrayList;
  */
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeHolder>{
     // Adapter custom para las diferentes cartas que nos muestran las recetas.
+
+
 
     // Dataset a usar
     private ArrayList<Recipe> dataset;
@@ -80,7 +81,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeHold
                     public void onClick(DialogInterface dialog, int which) {
                         dataset.remove(position);
                         RecipeJson.writeJson(dataset, c);
-
+                        notifyDataSetChanged();
                     }
                 })
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {

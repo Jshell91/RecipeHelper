@@ -14,7 +14,6 @@ import android.widget.TextView;
 import com.google.gson.JsonObject;
 
 import java.io.IOException;
-import java.sql.Time;
 import java.util.ArrayList;
 
 public class NewRecipe extends BaseActivity {
@@ -79,7 +78,7 @@ public class NewRecipe extends BaseActivity {
                 Float.parseFloat(quan), 0, 0, time.getText().toString(), ingredientlist);
         recipe.setCost();
         recipe.setPrice(recipe.getCost());
-        if(!recipelist.contains(recipe)){
+        if(recipelist.contains(recipe)){
             recipelist.add(recipe);
             RecipeJson.writeJson(recipelist, this);
         }
@@ -88,7 +87,7 @@ public class NewRecipe extends BaseActivity {
     }
 
     public void addIngredient(View v){
-        dfragment = dfragment.newInstance(baselist);
+        dfragment = IngredientListDialog.newInstance(baselist);
         dfragment.addRetrieveListener(new IngredientListDialog.RetrieveListener() {
             @Override
             public void onRetrieveListener(Ingredient e) {
